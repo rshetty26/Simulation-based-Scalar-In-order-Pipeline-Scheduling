@@ -8,15 +8,15 @@ The test rule will have your program consume an input file named test.in and pro
 
 2) Format of input file:
 
-The input file will consist of 1-32 lines, with each line being in one of the 4 formats below: **R,<REG>,<REG>,<REG>**
+The input file will consist of 1-32 lines, with each line being in one of the 4 formats below: **R,REG,REG,REG**
 
-**I,<REG>,<REG>,<IMM>**
+**I,REG,REG,IMM**
 
-**L,<REG>,<IMM>,<REG>**
+**L,REG,IMM,REG**
 
-**S,<REG>,<IMM>,<REG>**
+**S,REG,IMM,REG**
 
-where {R,I,L,S} are the capital letters R, I, L, and S, {,} is comma, <REG> is a positive integer value between 0 and 31, inclusive, and <IMM> is a NON-NEGATIVE integer value between 0 and 65535, with both <REG> and <IMM> encoded as decimals. The first <REG> is the destination for R, I, and L. Memory (not modeled) is the destination for S.
+where {R,I,L,S} are the capital letters R, I, L, and S, {,} is comma, REG is a positive integer value between 0 and 31, inclusive, and IMM is a NON-NEGATIVE integer value between 0 and 65535, with both REG and IMM encoded as decimals. The first REG is the destination for R, I, and L. Memory (not modeled) is the destination for S.
 
 e.g. a valid input file may look like:
 
@@ -38,23 +38,23 @@ e.g. a valid input file may look like:
 
 **S,7,24,29**
 
-R represents R-type instructions, e.g. ADDU $2, $3, $4 --> R,2,3,4
+R represents R-type instructions, e.g. ADDU $2, $3, $4 -- R,2,3,4
 
-L represents loads, e.g. LW $2, 80($3) --> L,2,80,3
+L represents loads, e.g. LW $2, 80($3) -- L,2,80,3
 
-I represents immediate instructions, e.g. ADDI $2, $3, 300 --> I,2,3,300
+I represents immediate instructions, e.g. ADDI $2, $3, 300 -- I,2,3,300
 
-S represents store instructions, e.g. SW $2, 40($8) --> S,2,40,8
+S represents store instructions, e.g. SW $2, 40($8) -- S,2,40,8
 
 3) Specifications
-- Pipeline stages = <F>,<D>,<E>,<M>,<W>
+- Pipeline stages = F,D,E,M,W
 - The first instruction is always fetched in cycle 0
 - Register 0 is always 0 (writes to $0 are no-ops; no dependencies via register 0).
 - All memory operations are cache hits; ergo, the only stalls in this system are register-carried load-use dependencies
 
 Given the above, and standard assumptions about FDEMW pipelines with forwarding, produce the following output in out.txt:
 
-For each instruction in the input file, produce a corresponding line in out.txt of the form <F-cycle>,<D-cycle>,<E-cycle>,<M-cycle>,<W-cycle>
+For each instruction in the input file, produce a corresponding line in out.txt of the form F-cycle,D-cycle,E-cycle,M-cycle,W-cycle
 
 where all comma-separated fields are non-negative integers encoded as two-digit decimals and represent the cycle in which the associated instruction completes the specified stage.
 
