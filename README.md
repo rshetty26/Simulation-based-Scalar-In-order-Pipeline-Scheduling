@@ -6,24 +6,27 @@ The test rule will have your program consume an input file named test.in and pro
 
 b) Format of input file:
 The input file will consist of 1-32 lines, with each line being in one of the 4 formats below: 
-R,<REG>,<REG>,<REG>
-I,<REG>,<REG>,<IMM>
-L,<REG>,<IMM>,<REG>
-S,<REG>,<IMM>,<REG>
+- R,<REG>,<REG>,<REG>
+- I,<REG>,<REG>,<IMM>
+- L,<REG>,<IMM>,<REG>
+- S,<REG>,<IMM>,<REG>
 where {R,I,L,S} are the capital letters R, I, L, and S, {,} is comma, <REG> is a positive integer value between 0 and 31, inclusive, and <IMM> is a NON-NEGATIVE integer value between 0 and 65535, with both <REG> and <IMM> encoded as decimals. The first <REG> is the destination for R, I, and L. Memory (not modeled) is the destination for S.
 e.g. a valid input file may look like:
-L,2,80,4
-L,3,64,5
-R,2,2,3
-S,2,24,29
-L,2,80,4
-L,3,64,2
-S,2,20,3
-L,7,28,3
-S,7,24,29
+- L,2,80,4
+- L,3,64,5
+- R,2,2,3
+- S,2,24,29
+- L,2,80,4
+- L,3,64,2
+- S,2,20,3
+- L,7,28,3
+- S,7,24,29
 R represents R-type instructions, e.g. ADDU $2, $3, $4 --> R,2,3,4
+
 L represents loads, e.g. LW $2, 80($3) --> L,2,80,3
+
 I represents immediate instructions, e.g. ADDI $2, $3, 300 --> I,2,3,300
+
 S represents store instructions, e.g. SW $2, 40($8) --> S,2,40,8 
 
 c) Specifications
