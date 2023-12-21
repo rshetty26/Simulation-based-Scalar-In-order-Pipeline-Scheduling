@@ -1,3 +1,5 @@
+<h1>Simulation-based Scalar In-order Pipeline Scheduling</h1>
+
 In a programming language of your choice among {C, Java, Python, C++} [note, you will be submitting a makefile, and it must ensure that the correct version of python is invoked i.e. be explicit in whether to invoke the python3 or python2.7 interpreter], implement a program with the following specification that schedules a restricted set of simplified instructions on an FDEMW 5 stage scalar (1-wide) pipeline with all potential forwarding paths:
 
 1) Invocation:
